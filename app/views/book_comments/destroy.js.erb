@@ -1,4 +1,4 @@
-
+$('.book-comments-counter').html("<%= j(render 'book_comments/counter', book: @book) %>");
 $("#comments_area").html("<%= j(render "book_comments/book_comment", book: @book) %>");
 
 $("textarea").val('');

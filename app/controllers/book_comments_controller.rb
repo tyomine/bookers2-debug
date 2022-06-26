@@ -1,15 +1,16 @@
 class BookCommentsController < ApplicationController
+  before_action :authenticate_user!
   
   def create
     @book = Book.find(params[:book_id])
-    comment = current_user.book_comments.new(book_comment_params)
-    comment.book_id = @book.id
-    comment.save
+    @comment = current_user.book_comments.new(book_comment_params)
+    @comment.book_id = @book.id
+    @comment.save
   end
   
   def destroy
     @book = BookComment.find(params[:id]).book
-    BookComment.find(params[:id]).destroy
+    @comment = BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
   end
   
     private
