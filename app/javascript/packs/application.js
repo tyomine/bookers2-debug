@@ -4,6 +4,8 @@
 // that code so it'll be compiled.
 //= require jquery
 //= require rails-ujs
+//= require jquery
+//= require jquery_ujs　
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -14,6 +16,9 @@ import "popper.js"
 import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application" 
+
+window.$ = window.jQuery = require('jquery'); 
+require('packs/raty')
 
 Rails.start()
 Turbolinks.start()
