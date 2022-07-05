@@ -25,18 +25,7 @@
           </td>
           <td class="view-count">閲覧数: <%= @book_detail.view_counts.count %></td>
           <td id="star-rate<%= @book.id %>"></td>
-           <script>
-             $('#star-rate<%= @book.id %>').empty();
-             $('#star-rate<%= @book.id%>').raty({
-             size : 36,
-             starOff : '<%= asset_path('star/star-off.png') %>',
-             starOn : '<%= asset_path('star/star-on.png') %>',
-             starHalf: '<%= asset_path('star/star-half.png') %>',
-             half : true,
-             readOnly: true,
-             score: <%= @book.rate %>,
-             });
-            </script>
+            <%= render "rate", book: @book %>
           <% if @user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
