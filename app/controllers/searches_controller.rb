@@ -9,7 +9,15 @@ class SearchesController < ApplicationController
     elsif @range == "Book"
       @books = Book.looks(params[:search], params[:word])
     else
-      @books = Book.search(params[:search], params[:word])
+      @books = Tag.search_books_for(params[:search], params[:word])
     end
   end
+  
+  def search_book
+    @book = Book.new
+    @books = Tag.search_books_for(params[:search], params[:word])
+  end
+  
+  
+
 end

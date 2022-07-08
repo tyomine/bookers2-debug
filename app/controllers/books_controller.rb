@@ -29,7 +29,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    tag_list = params[:book][:name].split(',')
     if @book.save
+      @book.save_tags(tag_list)
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all
@@ -61,14 +63,14 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
   
-  def search_book
-    @book = Book.new
-    @books = Book.search(params[:keyword])
-  end
+  # def search_book
+  #   @book = Book.new
+  #   @books = Book.search(params[:word])
+  # end
 
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :rate, :category)
+    params.require(:book).permit(:title, :body, :rate, :tag)
   end
 end
