@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'chats/show'
   get 'relationships/followings'
   get 'relationships/followers'
   devise_for :users
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
+  
+  resources :chats, only: [:show, :create]
   
   
   
